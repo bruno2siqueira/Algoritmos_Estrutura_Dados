@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <time.h>
+
+bool isPrime(int n) {
+    if (n <= 1) {
+        return false;
+    }
+    for (int i = 2; i < n; i++) {
+        if (n % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+int main() {
+    int count = 0;
+    int maxNumbers = 100;
+    int primes[3] = {0};
+    srand(time(NULL));
+    
+    while (count < maxNumbers) {
+        int randomNumber = rand() % maxNumbers + 1;
+        if (isPrime(randomNumber)) {
+            for (int i = 0; i < 3; i++) {
+                if (primes[i] == 0) {
+                    primes[i] = randomNumber;
+                    break;
+                }
+            }
+        }
+        count++;
+    }
+    
+    printf("Os primeiros 3 números primos gerados foram: ");
+    for (int i = 0; i < 3; i++) {
+        printf("%d ", primes[i]);
+    }
+    
+    return 0;
+}
